@@ -29,8 +29,8 @@
 
 </template>
 <script>
-import Navi from '@/components/Navi.vue'
-import Footer from '@/components/Footer.vue'
+import Navi from '@/components/cmm/Navi.vue'
+import Footer from '@/components/cmm/Footer.vue'
 export default{
 	name : 'calulator',
 	components :{Navi,Footer},

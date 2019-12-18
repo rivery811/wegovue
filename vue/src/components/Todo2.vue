@@ -4,13 +4,13 @@
 <div id="todolistapp">
     <div id="header" class="header">
         <h2>Todo List App</h2>
-        <input class="input" type="text"  v-model="task" placeholder="입력 후 엔터!">
+        <input class="input" type="text"  v-model="task" placeholder="입력 후 엔터!" >
         <span @click="addTodo" class="addbutton">추 가</span>
     </div>
     <ul id="todolist">
-		<li v-for="(todo , i) of todos" :key="todo.id" :class="todo.clazz"  >
+		<li v-for="(todo , i) of todos" :key="todo.id" :class="todo.clazz" @click="doneTodo(todo)">
 			<span>{{i+1}}. </span>
-			<span @click="doneTodo(i)">{{todo.todo}}</span>
+			<span >{{todo.todo}}</span>
             <span v-if="todo.done" >(완료)</span>
 			<span @click="deleteTodo(i)" class="close">&#x00D7;</span>
 
@@ -22,10 +22,10 @@
 </div>
 </template>
 <script>
-import Navi from '@/components/Navi.vue'
-import Footer from '@/components/Footer.vue'
+import Navi from '@/components/cmm/Navi.vue'
+import Footer from '@/components/cmm/Footer.vue'
 export default{
-	name : 'todo',
+	name : 'todo2',
 	components:{Navi,Footer},
 	data(){return{
 			todos:[
@@ -38,18 +38,15 @@ export default{
 	},
 	methods:{
 		addTodo(){		
-			this.todos.push({id :this.todos.length+1, todo : this.task, done:false})
-		},
-	doneTodo(index){
-		const target = this.todos[index]
-
-			target.done= !target.done
-			target.clazz = (target.done)?'checked':''
-		},
+        this.todos.push({id :this.todos.length+1, todo : this.task , done:false,clazz: '' })
+        },
+        doneTodo(todo){
+            todo.done = !todo.done
+            todo.clazz=todo.done?'checked':'' 
+            },
 
 		deleteTodo(i){
-			alert(i)
-			this.todos.splice(i,1)
+            this.todos.splice(i,1)
 		}
 
 	}
